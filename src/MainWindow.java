@@ -4,8 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
 public class MainWindow extends JFrame {
+
     public MainWindow(int width, int height){
         setSize(width, height);
         setTitle("My first window");
@@ -14,18 +17,33 @@ public class MainWindow extends JFrame {
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        setLayout(new FlowLayout());
+        add(new DrawingCanvas());
+
+        addMouseMotionListener(new MouseMotionListener() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+
+            }
+        });
+        //add(new TestForm().getMainPanel());
+
+        /*setLayout(new FlowLayout());
 
         JLabel labHello = new JLabel("Hello");
-        add(labHello);
+//        add(labHello);
 
         JTextField textField = new JTextField();
         textField.setText("Hello");
         textField.setEditable(false);
-        add(textField);
+//        add(textField);
 
         JButton jButton = new JButton("Click me");
-        add(jButton);
+//        add(jButton);
 
         jButton.addActionListener(new ActionListener() {
             @Override
@@ -35,13 +53,17 @@ public class MainWindow extends JFrame {
             }
         });
 
+        JLabel lbNum1 = new JLabel("Zadej číslo 1:");
+        add(lbNum1);
         JTextField txtFieldNum1 = new JTextField();
         txtFieldNum1.setEditable(true);
-        txtFieldNum1.setText("0");
+        txtFieldNum1.setColumns(4);
         JTextField txtFieldNum2 = new JTextField();
         txtFieldNum2.setEditable(true);
-        txtFieldNum2.setText("0");
+        txtFieldNum2.setColumns(4);
         add(txtFieldNum1);
+        JLabel lbNum2 = new JLabel("Zadej číslo 2:");
+        add(lbNum2);
         add(txtFieldNum2);
 
         JButton sumButton = new JButton("Sum the numbers");
@@ -49,7 +71,7 @@ public class MainWindow extends JFrame {
 
         JTextField sumTxtField = new JTextField();
         sumTxtField.setEditable(false);
-        sumTxtField.setText("0");
+        sumTxtField.setColumns(4);
         add(sumTxtField);
 
         sumButton.addActionListener(new ActionListener() {
@@ -64,7 +86,7 @@ public class MainWindow extends JFrame {
                     JOptionPane.showMessageDialog(null, "Musí být zadaná čísla!");
                 }
             }
-        });
+        });*/
 
 
     }
