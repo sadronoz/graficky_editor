@@ -1,6 +1,10 @@
 package src;
 
+import src.component.ComponentList;
+
 import javax.swing.*;
+import javax.swing.plaf.ToolBarUI;
+import javax.swing.plaf.basic.BasicMenuBarUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +13,7 @@ import java.awt.event.MouseMotionListener;
 
 public class MainWindow extends JFrame {
 
+    private ComponentList componentList;
     public MainWindow(int width, int height){
         setSize(width, height);
 //        setTitle("My first window");
@@ -19,9 +24,17 @@ public class MainWindow extends JFrame {
 
         setLayout(new BorderLayout());
 
+        componentList = ComponentList.getINSTANCE();
+
         add(new DrawingCanvas(width, height), BorderLayout.CENTER); // This is adding entire JComponent as a class
 
         JToolBar barMain = new JToolBar(SwingConstants.VERTICAL);
+        /*barMain.setUI(new ToolBarUI(){
+            public void paint(Graphics g, JComponent c){
+                g.setColor(Color.GRAY);
+                g.fillRect(0, 0, c.getWidth(), c.getHeight());
+            }
+        });*/
         add(barMain, BorderLayout.LINE_END);
 
         // adjusting JPanel body
@@ -32,10 +45,11 @@ public class MainWindow extends JFrame {
         JButton buttonCircle = new JButton("Circle");
         panelObjects.add(buttonCircle);
 
-        add(panelObjects);
+
 
         // end of JPanel adjustments
 
+        barMain.add(panelObjects);
 
 
         /*addMouseMotionListener(new MouseMotionListener() {
