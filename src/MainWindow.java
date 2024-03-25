@@ -11,15 +11,34 @@ public class MainWindow extends JFrame {
 
     public MainWindow(int width, int height){
         setSize(width, height);
-        setTitle("My first window");
+//        setTitle("My first window");
         setVisible(true);
         setResizable(false);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        add(new DrawingCanvas());
+        setLayout(new BorderLayout());
 
-        addMouseMotionListener(new MouseMotionListener() {
+        add(new DrawingCanvas(width, height), BorderLayout.CENTER); // This is adding entire JComponent as a class
+
+        JToolBar barMain = new JToolBar(SwingConstants.VERTICAL);
+        add(barMain, BorderLayout.LINE_END);
+
+        // adjusting JPanel body
+
+        JPanel panelObjects = new JPanel();
+        panelObjects.setLayout(new BoxLayout(panelObjects, BoxLayout.X_AXIS));
+
+        JButton buttonCircle = new JButton("Circle");
+        panelObjects.add(buttonCircle);
+
+        add(panelObjects);
+
+        // end of JPanel adjustments
+
+
+
+        /*addMouseMotionListener(new MouseMotionListener() {
             @Override
             public void mouseDragged(MouseEvent e) {
 
@@ -29,7 +48,8 @@ public class MainWindow extends JFrame {
             public void mouseMoved(MouseEvent e) {
 
             }
-        });
+        });*/
+
         //add(new TestForm().getMainPanel());
 
         /*setLayout(new FlowLayout());
